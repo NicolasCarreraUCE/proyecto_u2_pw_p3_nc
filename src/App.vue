@@ -1,13 +1,13 @@
 <template>
-  <Pregunta/>
+  <PokemonPage/>
 </template>
 
 <script>
-import Pregunta from './components/Pregunta.vue'
+import PokemonPage from './pages/PokemonPage.vue';
   export default {
     name: 'App',
     components: {
-      Pregunta
+      PokemonPage
     }
   }
 </script>
