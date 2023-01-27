@@ -1,17 +1,19 @@
 <template>
   <div class="options-conatiner">
     <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
+        <li v-for="poke in pokemons" :key="poke.id">{{ poke.nombre }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-
+  props:{
+    pokemons:{
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>
 

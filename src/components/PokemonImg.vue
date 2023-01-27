@@ -1,6 +1,6 @@
 <template>
   <img v-if="!showPokemon" v-bind:src="urlImagen" alt="No se puede renderisar" class="ocultar-pkemon">
-  <img v-bind:src="urlImagen" alt="No se puede renderisar">
+  <img v-bind:src="urlImagen" alt="No se puede renderisar"> 
 </template>
 
 <script>
@@ -22,8 +22,7 @@ export default {
   },
   computed: {
     urlImagen(){
-      const url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + this.idPokemon + '.svg'
-      console.log(url);
+      const url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + this.idPokemon + '.svg' 
       return url
     }
   }

@@ -41,6 +41,9 @@ export default {
             console.log(image)
             this.respuesta = answer
             this.img = image
+        },
+        mouted(){
+            this.consumirAPI()
         }
     }
 }
