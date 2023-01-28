@@ -1,9 +1,14 @@
 <template>
   <h1 v-if="!pokemonCorrecto">Espere por favor...</h1>
-  <div v-if="pokemonCorrecto">
+  <div v-else>
     <h1>Quien es este Pokemon</h1>
-    <PokemonImg :idPokemon="pokemonCorrecto.id" :showPokemon="true" />
-    <PokemonOpts :pokemons="pokemonArr" />
+    <PokemonImg :idPokemon="pokemonCorrecto.id" :showPokemon="mostarPokemon" />
+    <!-- $event: representa al objeto enviado en la segunda posicion del evento hijo -->
+    <PokemonOpts v-if="!mostarPokemon" :pokemons="pokemonArr" @selecionado="validarRespuesta($event)"/>
+  </div>
+  <div class="mensaje" v-if="mostarPokemon">
+    <p>{{ mensaje }}</p>
+    <button @click="reiniciar">Reintentar</button>
   </div>
 </template>
 
@@ -19,11 +24,9 @@ export default {
   data() {
     return {
       pokemonArr: [],
-      pokemonCorrecto: {
-        nombre: "",
-        id: 0,
-      },
-      mostarPokemon: false
+      pokemonCorrecto: null,
+      mostarPokemon: false,
+      mensaje: ''
     };
   },
   mounted() {
@@ -39,6 +42,27 @@ export default {
       const numero = Math.floor(Math.random() * 4);
       this.pokemonCorrecto = this.pokemonArr[numero];
     },
+    validarRespuesta(pokemonSeleccionadoHijo) {
+      console.log('Prueba evento');
+      console.log(pokemonSeleccionadoHijo);
+      this.mostarPokemon = true
+      const idSelecionado = pokemonSeleccionadoHijo
+
+      if(idSelecionado == this.pokemonCorrecto.id) {
+        console.log('Correcto');
+        this.mensaje = 'Felicidades has ganado'
+      } else {
+        console.log('Incorrecto');
+        this.mensaje = 'Incorrecto el pokemon coorecto fue ' + this.pokemonCorrecto.nombre
+      }
+    },
+    reiniciar() {
+      this.pokemonArr = [],
+      this.pokemonCorrecto = null
+      this.mostarPokemon = false
+      this.mensaje = ''
+      this.cargaPokemonInicial()
+    }
   },
 };
 </script>

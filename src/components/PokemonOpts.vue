@@ -1,7 +1,11 @@
 <template>
   <div class="options-conatiner">
     <ul>
-        <li v-for="poke in pokemons" :key="poke.id">{{ poke.nombre }}</li>
+        <!-- Enviar un parametro-->
+        <li v-for="poke in pokemons" :key="poke.id" @click="$emit('selecionado', poke.id)">{{ poke.nombre }}</li>
+        <!-- Enviar varios parametros -->
+        <!-- li v-for="poke in pokemons" :key="poke.id" @click="$emit('selecionado', {pokemonId: poke.id, poemonNombre: poke.poemonNombre})">{{ poke.nombre }}</li>-->
+        
     </ul>
   </div>
 </template>
@@ -12,6 +16,11 @@ export default {
     pokemons:{
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    imprimir() {
+      console.log('Gracias igualmente');
     }
   }
 }
